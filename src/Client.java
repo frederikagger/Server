@@ -3,13 +3,10 @@ public class Client {
     private String username;
     private int port;
 
-    public Client(String IP, String username, int port) {
-        this.IP = IP;
+    public Client(String username, String IP, int port) {
         this.username = username;
+        this.IP = IP;
         this.port = port;
-    }
-
-    public Client() {
     }
 
     public String getIP() {
