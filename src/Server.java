@@ -1,12 +1,14 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server {
     private ArrayList<Socket> sockets = new ArrayList<>();
     private ArrayList<MyServerSocket> serverSockets = new ArrayList<>();
+    private HashSet<String> names = new HashSet<>();
     private ArrayList<Client> clients = new ArrayList<>();
     private final int numberOfClients = 4;
     private ExecutorService executor = Executors.newFixedThreadPool(numberOfClients);
@@ -34,5 +36,9 @@ public class Server {
 
     public ArrayList<Client> getClients() {
         return clients;
+    }
+
+    public HashSet<String> getNames() {
+        return names;
     }
 }
