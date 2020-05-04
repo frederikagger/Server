@@ -14,7 +14,7 @@ public class MyServerSocket extends ServerSocket implements Runnable {
 
     public MyServerSocket(int port, Server server) throws IOException {
         serverSocket = new ServerSocket(port);
-        server.getServerSockets().add(this);
+        server.getServerSockets().add(this); // adding the serversockets to the servers arraylist
         this.port = port;
         this.server = server;
     }
@@ -22,16 +22,16 @@ public class MyServerSocket extends ServerSocket implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println("Server started at port: "+port);
+            System.out.println("Server started at port: " + port);
             socket = serverSocket.accept();
             server.getSockets().add(socket);
-            System.out.println("Connected at port: "+port);
+            System.out.println("Connected at port: " + port);
             out = new DataOutputStream(socket.getOutputStream());  // sends output to socket
             in = new DataInputStream(new BufferedInputStream(socket.getInputStream())); // takes input from the client socket
             joinResponse();
             readMessages();
         } catch (IOException e) {
-            e.printStackTrace();
+           e.printStackTrace();
         }
     }
 

@@ -8,7 +8,7 @@ public class Server {
     private ArrayList<Socket> sockets = new ArrayList<>();
     private ArrayList<MyServerSocket> serverSockets = new ArrayList<>();
     private ArrayList<Client> clients = new ArrayList<>();
-    private final int numberOfClients = 3;
+    private final int numberOfClients = 4;
     private ExecutorService executor = Executors.newFixedThreadPool(numberOfClients);
     private final int port = 5000;
 
