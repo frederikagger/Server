@@ -87,7 +87,11 @@ public class MyServerSocket extends ServerSocket implements Runnable {
                 line = in.readUTF();
                 String[] args = line.split(" ");
                 if (check(args)){
-                    this.client = new Client(args[1], args[2], Integer.parseInt(args[3]));
+                    String name = args[1];
+                    String IP = args[2];
+                    int port = Integer.parseInt(args[3]);
+                    this.client = new Client(name, IP, port);
+                    server.getNames().add(name);
                     server.getClients().add(client);
                     out.writeUTF(protocol.ok());
                     dataResponse(this.client.getUsername() + " joined the chat");
@@ -131,12 +135,7 @@ public class MyServerSocket extends ServerSocket implements Runnable {
             return true;
     }
 
-    public boolean usernameIsTaken(String line){
-        for (Client client: server.getClients()) {
-            if (client.getUsername().equals(line)){
-                return true;
-            }
-        }
-        return false;
+    public boolean usernameIsTaken(String name){
+        return server.getNames().contains(name);
     }
 }
